@@ -2,7 +2,14 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+
+  <script>
+    window.onload = function() {
+      lazySizes.init();
+    }
+  </script>
+
   <head>
     <title>Zirce Shop</title>
     <style>
@@ -15,10 +22,7 @@
     </button>
     <nav id="mainMenu">
       <ul>
-        <li><a href="#">Menu Item 1</a></li>
-        <li><a href="#">Menu Item 2</a></li>
-        <li><a href="#">Menu Item 3</a></li>
-        <model-viewer src="goodra.glb" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" environment-image="Zirce.png" skybox-image="Zirce.png" animation-name="ani_idle_bat_0706" autoplay exposure="1" camera-orbit="-0.8251deg 95.18deg 7.398m" field-of-view="23.44deg">
+        <model-viewer src="goodra.glb" class="lazyload" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" environment-image="Zirce.png" skybox-image="Zirce.png" animation-name="ani_idle_bat_0706" autoplay exposure="1" camera-orbit="-0.8251deg 95.18deg 7.398m" field-of-view="23.44deg">
             <div class="progress-bar hide" slot="progress-bar">
                 <div class="update-bar"></div>
             </div>
@@ -26,7 +30,6 @@
                 View in your space
             </button>
             <div id="ar-prompt">
-                <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
             </div>
         </model-viewer>
       </ul>
