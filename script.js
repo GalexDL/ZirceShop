@@ -1,8 +1,7 @@
-    function openPopup() {
-      var popup = document.getElementById("popupMenu");
-      if (popup.style.display === "none") {
-        popup.style.display = "block";
-      } else {
-        popup.style.display = "none";
-      }
-    }
+
+var menuButton = document.getElementById("menuButton");
+var mainMenu = document.getElementById("mainMenu");
+
+menuButton.addEventListener("click", function() {
+  mainMenu.classList.toggle("open");
+});
