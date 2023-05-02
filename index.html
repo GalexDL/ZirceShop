@@ -9,10 +9,13 @@
     </style>
   </head>
   <body>
-    <model-viewer alt="Neil Armstrong" src="Goodra.gltf" ar environment-image="shared-assets/environments/moon_1k.hdr" poster="bpt.png" shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    <model-viewer src="Goodra.gltf" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" environment-image="Zirce.png" skybox-image="Zirce.png" auto-rotate>
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
     <button type="submit" href="https://www.scaler.com/topics/image-button-in-html/">
         <img src="bpb.png" alt="buttonpng" border="0" />
-      </button>
+    </button>
   </body>
 
 </html>
