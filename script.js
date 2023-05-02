@@ -13,8 +13,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 var loader = new THREE.FBXLoader();
 loader.load('Goodra.fbx', function (object) {
   scene.add(object);
-}, undefined, function (error) {
-  console.error(error);
 });
 
 // Add animation loop
