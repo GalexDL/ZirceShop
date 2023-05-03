@@ -20,3 +20,21 @@ outlinePass.uniforms.uEdgeThickness.value = 0.1;
 outlinePass.uniforms.uEdgeColor.value.set(0xff0000);
 outlinePass.renderToScreen = true;
 composer.addPass(outlinePass);
+
+const viewer = document.querySelector('model-viewer');
+
+viewer.addEventListener('model-visibility', () => {
+  const mesh = viewer.shadowTarget;
+  const { vertexShader, fragmentShader } = document.getElementById('outline-vertex-shader').text;
+  mesh.material.onBeforeRender = (renderer, scene, camera, geometry, material, group) => {
+    material.uniforms = {
+      ...material.uniforms,
+      edgeColor: { value: new THREE.Color('#000000') },
+      thickness: { value: 20.02 }
+    };
+    material.vertexShader = vertexShader;
+    material.fragmentShader = fragmentShader;
+    material.needsUpdate = true;
+  };
+});
+
