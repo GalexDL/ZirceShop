@@ -9,6 +9,17 @@
       lazySizes.init();
     }
   </script>
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@^0.152.1/build/three.module.min.js"
+    }
+  }
+  </script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
 
   <head>
     <title>Zirce Shop</title>
@@ -23,7 +34,9 @@
     <nav id="mainMenu">
       <ul>
         <model-viewer width="200" height="400" src="costume_party_style_zoroark.glb" class="lazyload" ar ar-modes="webxr scene-viewer quick-look" camera-controls poster="poster.webp" shadow-intensity="1" environment-image="Zirce.png" skybox-image="Zirce.png" animation-name="ani_idle_bat_0706" autoplay exposure="1" camera-orbit="-0.8251deg 95.18deg 7.398m" field-of-view="23.44deg">
-            <div class="progress-bar hide" slot="progress-bar">
+            <effect-composer render-mode="quality">
+            <outline-effect color="black" blend-mode="skip"></outline-effect>
+          <div class="progress-bar hide" slot="progress-bar">
                 <div class="update-bar"></div>
             </div>
             <div id="ar-prompt">
@@ -31,9 +44,16 @@
         </model-viewer>
       </ul>
     </nav>
-        
   </body>
-  
+  <script type="module">
+    const effectsViewer = document.querySelector("model-viewer#effectsViewer");
+    const effects = effectsViewer.querySelector("effect-composer").children;
+    const inputs = effectsViewer.querySelectorAll("input");
+
+    for (let i = 0; i < effects.length; i++) {
+      inputs[i].addEventListener('change', (e) => effects[i].blendMode = e.target.checked ? 'default' : 'skip');
+    }
+  </script>  
   <body>
   </body>
 </html>
