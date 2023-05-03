@@ -3,6 +3,37 @@
   <script src="script.js" defer></script>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+<script type="x-shader/x-vertex" id="outline-vertex-shader">
+attribute vec3 position;
+attribute vec3 normal;
+
+uniform mat4 modelMatrix;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+varying vec3 vNormal;
+
+void main() {
+  vNormal = normal;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+</script>
+
+<script type="x-shader/x-fragment" id="outline-fragment-shader">
+precision highp float;
+
+varying vec3 vNormal;
+
+void main() {
+  vec3 normal = normalize(vNormal);
+  vec3 edgeColor = vec3(0.0, 0.0, 0.0);
+  float thickness = 0.02;
+  float r = thickness * length(cross(normal, normalize(vec3(-vNormal.y + vNormal.z, vNormal.x + vNormal.z, vNormal.x - vNormal.y))));
+  float f = 1.0 - smoothstep(1.0 - thickness, 1.0 + thickness, r);
+  gl_FragColor.rgb = mix(edgeColor, vec3(1.0, 1.0, 1.0), f);
+  gl_FragColor.a = 1.0;
+}
+</script>
 
   <script>
     window.onload = function() {
