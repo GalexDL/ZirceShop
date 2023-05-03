@@ -9,6 +9,7 @@
       lazySizes.init();
     }
   </script>
+
   <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"></script>
   <script type="importmap">
   {
@@ -18,15 +19,16 @@
   }
   </script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
-
   <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
+
 
   <head>
     <title>Zirce Shop</title>
     <style>
     </style>
-
   </head>
+
+
   <body>
     <button id="menuButton">
         <img src="bpb.png" alt="buttonpng" border="0" />
@@ -46,15 +48,5 @@
       </ul>
     </nav>
   </body>
-  <script type="module">
-    const effectsViewer = document.querySelector("model-viewer#effectsViewer");
-    const effects = effectsViewer.querySelector("effect-composer").children;
-    const inputs = effectsViewer.querySelectorAll("input");
-
-    for (let i = 0; i < effects.length; i++) {
-      inputs[i].addEventListener('change', (e) => effects[i].blendMode = e.target.checked ? 'default' : 'skip');
-    }
-  </script>  
-  <body>
-  </body>
+  
 </html>
