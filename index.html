@@ -10,16 +10,20 @@
     }
   </script>
 
-  <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"></script>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@^0.152.1/build/three.module.min.js"
-    }
-  }
-  </script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
+<!-- EffectComposer module -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/EffectComposer.js"></script>
+
+<!-- RenderPass module -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/RenderPass.js"></script>
+
+<!-- ShaderPass module -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/ShaderPass.js"></script>
+
+<!-- CopyShader module -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/CopyShader.js"></script>
+
+<!-- EdgeShader2 module -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/EdgeShader2.js"></script>
 
 
   <head>
@@ -43,15 +47,6 @@
                 <div class="update-bar"></div>
             </div>
         </model-viewer>
-        <script type="module">
-          const effectsViewer = document.querySelector("model-viewer#effectsViewer");
-          const effects = effectsViewer.querySelector("effect-composer").children;
-          const inputs = effectsViewer.querySelectorAll("input");
-
-          for (let i = 0; i < effects.length; i++) {
-            inputs[i].addEventListener('change', (e) => effects[i].blendMode = e.target.checked ? 'default' : 'skip');
-          }
-        </script>  
       </ul>
     </nav>
   </body>
