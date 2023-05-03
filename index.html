@@ -10,21 +10,17 @@
     }
   </script>
 
-<!-- EffectComposer module -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/EffectComposer.js"></script>
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@^0.152.1/build/three.module.min.js"
+    }
+  }
+  </script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
 
-<!-- RenderPass module -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/RenderPass.js"></script>
-
-<!-- ShaderPass module -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/postprocessing/ShaderPass.js"></script>
-
-<!-- CopyShader module -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/CopyShader.js"></script>
-
-<!-- EdgeShader2 module -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/shaders/EdgeShader2.js"></script>
-
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
 
   <head>
     <title>Zirce Shop</title>
@@ -40,13 +36,44 @@
     <nav id="mainMenu">
       <ul>
         <model-viewer src="costume_party_style_zoroark.glb" class="lazyload" camera-controls poster="poster.webp" shadow-intensity="1" environment-image="Zirce.png" skybox-image="Zirce.png" animation-name="ani_idle_bat_0706" autoplay exposure="1" camera-orbit="-0.8251deg 95.18deg 7.398m" field-of-view="13.44deg">
-          <effect-composer>
-            <outline-effect color="black" width="50" ></outline-effect>
+          <effect-composer render-mode="quality">
+            <outline-effect color="blue" blend-mode="skip"></outline-effect>
+            <ssao-effect blend-mode="skip"></ssao-effect>
+            <glitch-effect blend-mode="skip"></glitch-effect>
+            <smaa-effect blend-mode="skip"></smaa-effect>
+            <bloom-effect blend-mode="skip"></bloom-effect>
+            <pixelate-effect granularity="5" blend-mode="skip"></pixelate-effect>
+            <color-grade-effect blend-mode="default"></color-grade-effect>
           </effect-composer>
+          <div class="controls">
+            <label for="outline">Outline Effect</label>
+            <input type="checkbox" id="outline">
+            <label for="ssao">SSAO Effect</label>
+            <input type="checkbox" id="ssao">
+            <label for="glitch">Glitch Effect</label>
+            <input type="checkbox" id="glitch">
+            <label for="smaa">SMAA Effect</label>
+            <input type="checkbox" id="smaa">
+            <label for="bloom">Bloom Effect</label>
+            <input type="checkbox" id="bloom">
+            <label for="pixelate">Pixelate Effect</label>
+            <input type="checkbox" id="pixelate">
+            <label for="colorgrade">Color Grade Effect</label>
+            <input type="checkbox" id="colorgrade" checked>
+          </div>
           <div class="progress-bar hide" slot="progress-bar">
                 <div class="update-bar"></div>
             </div>
         </model-viewer>
+        <script type="module">
+          const effectsViewer = document.querySelector("model-viewer#effectsViewer");
+          const effects = effectsViewer.querySelector("effect-composer").children;
+          const inputs = effectsViewer.querySelectorAll("input");
+
+          for (let i = 0; i < effects.length; i++) {
+            inputs[i].addEventListener('change', (e) => effects[i].blendMode = e.target.checked ? 'default' : 'skip');
+          }
+        </script>       
       </ul>
     </nav>
   </body>
