@@ -3,38 +3,21 @@
   <script src="script.js" defer></script>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
-<script type="x-shader/x-vertex" id="outline-vertex-shader">
-attribute vec3 position;
-attribute vec3 normal;
-
-uniform mat4 modelMatrix;
-uniform mat4 modelViewMatrix;
-uniform mat4 projectionMatrix;
-
-varying vec3 vNormal;
-
-void main() {
-  vNormal = normal;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}
-</script>
-
-<script type="x-shader/x-fragment" id="outline-fragment-shader">
-precision highp float;
-
-varying vec3 vNormal;
-
-void main() {
-  vec3 normal = normalize(vNormal);
-  vec3 edgeColor = vec3(0.0, 0.0, 0.0);
-  float thickness = 0.02;
-  float r = thickness * length(cross(normal, normalize(vec3(-vNormal.y + vNormal.z, vNormal.x + vNormal.z, vNormal.x - vNormal.y))));
-  float f = 1.0 - smoothstep(1.0 - thickness, 1.0 + thickness, r);
-  gl_FragColor.rgb = mix(edgeColor, vec3(1.0, 1.0, 1.0), f);
-  gl_FragColor.a = 1.0;
-}
-</script>
-
+  
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.7.1/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@^0.152.1/build/three.module.min.js"
+    }
+  }
+  </script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer/dist/model-viewer-module.min.js"></script>
+  
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"></script>
+  
+  
+  
   <script>
     window.onload = function() {
       lazySizes.init();
@@ -54,13 +37,15 @@ void main() {
     <nav id="mainMenu">
       <ul>
         <model-viewer src="costume_party_style_zoroark.glb" class="lazyload" camera-controls poster="poster.webp" shadow-intensity="1" environment-image="Zirce.png" skybox-image="Zirce.png" animation-name="ani_idle_bat_0706" autoplay exposure="1" camera-orbit="-0.8251deg 95.18deg 7.398m" field-of-view="13.44deg">
+          <effect-composer render-mode="quality">
+            <outline-effect color="blue"></outline-effect>
+          </effect-composer>    
+          
           <div class="progress-bar hide" slot="progress-bar">
                 <div class="update-bar"></div>
             </div>
-            <model-viewer-post-processing>
-                <model-viewer-outline pass="FIRST" blendFunction="NORMAL" color="0xffffff" thickness="20.02"></model-viewer-outline>
-            </model-viewer-post-processing>
         </model-viewer>    
+     
       </ul>
     </nav>
   </body>
