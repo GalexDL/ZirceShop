@@ -40,15 +40,3 @@ viewer.addEventListener('model-visibility', () => {
     material.needsUpdate = true;
   };
 });
-
-
-
-window.addEventListener("orientationchange", function() {
-  var viewportWidth = window.innerWidth;
-  var viewportHeight = window.innerHeight;
-  if (viewportWidth < viewportHeight) {
-    document.getElementById("rotate-message").style.display = "block";
-  } else {
-    document.getElementById("rotate-message").style.display = "none";
-  }
-});
