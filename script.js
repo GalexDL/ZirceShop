@@ -1,3 +1,6 @@
+if (screen.orientation) {
+  screen.orientation.lock('landscape');
+}
 
 var menuButton = document.getElementById("menuButton");
 var mainMenu = document.getElementById("mainMenu");
