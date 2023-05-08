@@ -39,6 +39,10 @@ img {
   #rotate-message {
     display: block;
   }
+  html {
+     background: rgba(0,0,0,0.5);
+  }
+
 }
 @media only screen and (max-width: 767px) and (orientation: landscape) {
   #rotate-message {
