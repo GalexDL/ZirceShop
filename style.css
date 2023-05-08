@@ -34,3 +34,14 @@ img {
 #mainMenu.open {
   display: block;
 }
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+  #rotate-message {
+    display: block;
+  }
+}
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  #rotate-message {
+    display: none;
+  }
+}
