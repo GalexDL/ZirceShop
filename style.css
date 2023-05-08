@@ -2,7 +2,7 @@ body {
   background-image: url('Zirce.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  object-fit: cover;
+  background-size: fill;
 }
 button {
   border: none;
