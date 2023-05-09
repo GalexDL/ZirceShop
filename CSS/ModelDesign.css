@@ -25,3 +25,17 @@
 .sample>.demo {
   height: 100vh;
 }
+
+.sample pre {
+  font-size: .8em;
+  line-height: 1.6em;
+  padding: var(--pre-padding);
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+}
+
+.sample .quick-start-example pre {
+  padding: 10px 15px;
+}
