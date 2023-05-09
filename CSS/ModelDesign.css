@@ -1,0 +1,27 @@
+.sample {
+  display: grid;
+  position: relative;
+  background: white;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "content demo";
+}
+
+.sample {
+  border-bottom: var(--border-style);
+}
+
+.demo {
+  grid-area: demo;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  border: 0px solid #555;
+  box-sizing: border-box;
+}
+
+.sample>.demo {
+  height: 100vh;
+}
